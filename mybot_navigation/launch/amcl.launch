@@ -1,0 +1,18 @@
+<?xml version = "1.0"?>
+<launch>
+    <arg name="robot_init_x" default="0.0"/>
+    <arg name="robot_init_y" default="0.0"/>
+    <arg name="robot_init_phi" default="0.0"/>
+    
+<node pkg="amcl" type="amcl" name="amcl" output="log">
+         <remap from="scan" to="/scan" />
+         <remap from="map" to="/map" />
+         <remap from="/diagnostics" to="diagnostics" />
+
+         <param name="initial_pose_x" value="$(arg robot_init_x)"/>
+         <param name="initial_pose_y" value="$(arg robot_init_y)"/>
+         <param name="initial_pose_a" value="$(arg robot_init_phi)"/>
+
+        <rosparam command="load" file="$(find mybot_navigation)/params/amcl_params.yaml" />
+     </node>
+</launch>

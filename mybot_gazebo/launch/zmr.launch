@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="x_pos" default="0.0"/>
+    <arg name="y_pos" default="0.0"/>
+    <arg name="z_pos" default="0.1"/>
+
+    <param name="robot_description" textfile="$(find mybot_description)/urdf/zmr_300.urdf" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+  
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find mybot_description)/urdf/zmr_300.urdf -urdf -model zmr_300 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)" />
+
+</launch>

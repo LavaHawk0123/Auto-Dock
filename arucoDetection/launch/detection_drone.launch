@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<launch>
+  <node pkg="arucoDetection" type="aruco_detector_drone_top" name="aruco_detector_drone_top" output="screen"/>
+  <node pkg="arucoDetection" type="aruco_detector_drone_base" name="aruco_detector_drone_base" output="screen"/>
+  <node name="rqt_image_view" pkg="rqt_image_view" type="rqt_image_view" respawn="false" output="screen">
+    <remap from="image" to="/marker_detect_drone_base/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+</launch>

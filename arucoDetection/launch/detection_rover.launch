@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<launch>
+ <!--<include file="$(find realsense2_camera)/launch/rs_d435_camera_with_model.launch"/>-->
+  <node pkg="arucoDetection" type="aruco_detector" name="aruco_detect" output="screen"/>
+  <node name="rqt_image_view" pkg="rqt_image_view" type="rqt_image_view" respawn="false" output="screen">
+    <remap from="image" to="/marker_detect/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+  <param name ="calib_file" value= "$(find arucoDetection)/src/calib_result.jpg"/>
+</launch>

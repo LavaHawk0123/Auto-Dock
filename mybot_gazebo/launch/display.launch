@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find mybot_gazebo)/rviz/zmr_sim_vis.rviz" />
+</launch>

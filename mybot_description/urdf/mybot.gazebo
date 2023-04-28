@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!--gazebo reference="front_left_wheel_hinge">
+      <mu1 value="10000.0" />
+      <mu2 value="10000.0" />
+      <kp value="100000.0" />
+      <kd value="0.00001" />
+      <maxVel value="1.0" />
+      <minDepth value="0.0001" />
+  </gazebo>    
+  <gazebo reference="front_right_wheel_hinge">
+      <mu1 value="10000.0" />
+      <mu2 value="10000.0" />
+      <kp value="100000.0" />
+      <kd value="0.00001" />
+      <maxVel value="1.0" />
+      <minDepth value="0.0001" />
+  </gazebo>
+  <gazebo reference="rear_left_wheel_hinge">
+      <mu1 value="10000.0" />
+      <mu2 value="10000.0" />
+      <kp value="100000.0" />
+      <kd value="0.00001" />
+      <maxVel value="1.0" />
+      <minDepth value="0.0001" />
+  </gazebo>
+  
+  <gazebo reference="rear_left_wheel_hinge">
+      <mu1 value="10000.0" />
+      <mu2 value="10000.0" />
+      <kp value="100000.0" />
+      <kd value="0.00001" />
+      <maxVel value="1.0" />
+      <minDepth value="0.0001" />
+  </gazebo-->    
+
+  <!-- SKID STEER PLUGINS -->
+
+
+  
+<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>front_left_wheel_hinge</leftFrontJoint>
+    <rightFrontJoint>front_right_wheel_hinge</rightFrontJoint>
+    <leftRearJoint>rear_left_wheel_hinge</leftRearJoint>
+    <rightRearJoint>rear_right_wheel_hinge</rightRearJoint>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <covariance_x>0.0001</covariance_x>
+    <covariance_y>0.0001</covariance_y>
+    <covariance_yaw>0.0001</covariance_yaw>
+    <wheelSeparation>1.0</wheelSeparation>
+    <wheelDiameter>0.4</wheelDiameter>
+    <robotBaseFrame>chassis</robotBaseFrame>
+    <torque>20</torque>
+    <topicName>cmd_vel</topicName>
+    <broadcastTF>false</broadcastTF>
+  </plugin>
+</gazebo>
+
+  <gazebo reference="chassis">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <gazebo reference="front_left_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="front_right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="rear_left_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+  <gazebo reference="rear_right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+
+  <gazebo reference="camera">
+    <material>Gazebo/Green</material>
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>0.3562634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>mybot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+ 
+<!-- HOKUYO LASER -->
+
+
+<gazebo reference="hokuyo">
+  <sensor type="ray" name="head_hokuyo_sensor">
+    <pose>0 0 0 0 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>40</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>720</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.040796</min_angle>
+          <max_angle>1.040796</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+      	<min>0.10</min>
+        <max>30.0</max>
+        <resolution>0.01</resolution>
+      </range>
+      <noise>
+      	<type>gaussian</type>    
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+      <topicName>/mybot/laser/scan</topicName>
+      <frameName>hokuyo</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+    <!-- ULTRASONIC SENSORS LEFT -->
+
+
+<gazebo reference="us_sensor_left">        
+  <sensor type="ray" name="us1">
+    <pose>0.25 0 0 0 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>5</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>10</samples>
+          <resolution>3</resolution> 
+          <min_angle>-0.20</min_angle>
+          <max_angle>0.20</max_angle>
+	</horizontal>
+       	<vertical>
+          <samples>10</samples>
+          <resolution>3</resolution> 
+          <min_angle>-0.25</min_angle>
+          <max_angle>0.25</max_angle> 
+      	</vertical>
+      </scan>
+      <range>
+      	<min>0.015</min>
+        <max>1.50</max>
+        <resolution>0.01</resolution>
+      </range>
+    </ray>
+    <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+      <gaussianNoise>0.005</gaussianNoise>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>5</updateRate>
+      <topicName>sensor/us_sensor_left</topicName>
+      <frameName>us_sensor_left</frameName>
+      <radiation>ULTRASONIC</radiation>
+      <fov>0.6</fov>
+    </plugin>
+  </sensor>  
+</gazebo>
+
+<!-- ULTRASONIC SENSORS RIGHT -->
+
+<gazebo reference="us_sensor_right">        
+  <sensor type="ray" name="us2">
+    <pose>0.25 0 0 0 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>5</update_rate>
+    <ray>
+      <scan>
+      	<horizontal>
+          <samples>10</samples>
+          <resolution>3</resolution> 
+          <min_angle>-0.20</min_angle>
+          <max_angle>0.20</max_angle>
+        </horizontal>
+        <vertical>
+          <samples>10</samples>
+          <resolution>3</resolution> 
+          <min_angle>-0.25</min_angle>
+          <max_angle>0.25</max_angle> 
+        </vertical>
+      </scan>
+      <range>
+        <min>0.015</min>
+        <max>1.50</max>
+        <resolution>0.01</resolution>
+      </range>
+    </ray>
+    <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+      <gaussianNoise>0.005</gaussianNoise>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>5</updateRate>
+      <topicName>sensor/us_sensor_right</topicName>
+      <frameName>us_sensor_right</frameName>
+      <radiation>ULTRASONIC</radiation>
+      <fov>0.6</fov>
+    </plugin>
+  </sensor>  
+</gazebo>
+
+<!-- DEPTH CAMERA -->
+
+
+<gazebo reference="camera_depth">  
+  <sensor type="depth" name="camera_depth">
+    <always_on>true</always_on>
+    <visualize>false</visualize>
+    <update_rate>20.0</update_rate>
+    <camera>
+      <horizontal_fov>1.5</horizontal_fov>
+        <image>
+          <format>B8G8R8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>80.0</far>
+        </clip>
+    </camera>
+    <plugin name="kinect_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+      <cameraName>camera</cameraName>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10</updateRate>
+      <imageTopicName>rgb/image_raw</imageTopicName>
+      <depthImageTopicName>depth/image_raw</depthImageTopicName>
+      <pointCloudTopicName>depth/points</pointCloudTopicName>
+      <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+      <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+      <frameName>camera_depth</frameName>
+      <baseline>0.1</baseline>
+      <distortion_k1>0.0</distortion_k1>
+      <distortion_k2>0.0</distortion_k2>
+      <distortion_k3>0.0</distortion_k3>
+      <distortion_t1>0.0</distortion_t1>
+      <distortion_t2>0.0</distortion_t2>
+      <pointCloudCutoff>0.4</pointCloudCutoff>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<!-- IMU SENSOR -->
+<gazebo reference="imu_link">
+  <gravity>true</gravity>
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <visualize>true</visualize>
+    <topic>imu_data_plugin</topic>
+    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+      <topicName>imu</topicName>
+      <bodyName>imu_link</bodyName>
+      <updateRateHZ>10.0</updateRateHZ>
+      <gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>imu_link</frameName>
+    </plugin>
+    <pose>0 0 0 0 0 0</pose>
+  </sensor>
+</gazebo>
+
+
+
+<!-- GPS SENSOR >
+<gazebo>
+  <plugin name="novatel_gps_sim" filename="libhector_gazebo_ros_gps.so">
+    <alwaysOn>1</alwaysOn>
+    <updateRate>1.0</updateRate>
+    <bodyName>chassis</bodyName>
+    <topicName>fix</topicName>
+    <velocityTopicName>fix_velocity</velocityTopicName>
+    <drift>0 0 0</drift>
+    <gaussianNoise>0 0 0</gaussianNoise>
+    <velocityDrift>0 0 0</velocityDrift>
+    <velocityGaussianNoise>0 0 0</velocityGaussianNoise>
+  </plugin>
+</gazebo -->
+
+<gazebo>
+<plugin name="novatel_gps_sim" filename="libhector_gazebo_ros_gps.so">
+<alwayson>true</alwayson>
+<updaterate>1.0</updaterate>
+<bodyname>chassis</bodyname>
+<topicname>/fix</topicname>
+<velocitytopicname>/fix_velocity</velocitytopicname>
+<drift>5.0 5.0 5.0</drift>
+<gaussiannoise>0.1 0.1 0.1</gaussiannoise>
+<velocitydrift>0 0 0</velocitydrift>
+<velocitygaussiannoise>0.1 0.1 0.1</velocitygaussiannoise>
+</plugin>
+</gazebo>
+
+</robot>

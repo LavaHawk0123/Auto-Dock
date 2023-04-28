@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="zmr_300">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="35.875" />
+      <inertia
+        ixx="0.2429"
+        ixy="2.3606E-05"
+        ixz="-0.0096871"
+        iyy="0.62719"
+        iyz="-6.546E-05"
+        izz="0.78567" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/FULL_ASSEM_FOR_URDF_2_chassis.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.52941 0.54902 0.54902 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/FULL_ASSEM_FOR_URDF_2_chassis.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rplidar">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="0.175296926046256" />
+      <inertia
+        ixx="8.27011319738944E-05"
+        ixy="2.11007298866964E-10"
+        ixz="-2.6283661255278E-09"
+        iyy="8.26845677328549E-05"
+        iyz="-3.34772810962019E-11"
+        izz="0.000118170802275553" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/LIDARS_A3M1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/LIDARS_A3M1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rplidar_jw"
+    type="fixed">
+    <origin
+      xyz="0.21784 -0.00054319 0.14722"
+      rpy="0 0 0.0067981" />
+    <parent
+      link="base_link" />
+    <child
+      link="rplidar" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="front_camera">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0296419080966934" />
+      <inertia
+        ixx="2.1945697057995E-05"
+        ixy="2.75098605906139E-07"
+        ixz="7.68828390839042E-11"
+        iyy="1.35790794083745E-06"
+        iyz="1.71488218344616E-09"
+        izz="2.09760903129088E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/Intel_RealSense_Depth_Camera_D415.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/Intel_RealSense_Depth_Camera_D415.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_camera_jw"
+    type="fixed">
+    <origin
+      xyz="0.44569 -0.00079521 0.11457"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_camera" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_wheel">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="2.4188326460671" />
+      <inertia
+        ixx="0.00532198314714701"
+        ixy="7.74566669972607E-08"
+        ixz="1.0842021724855E-19"
+        iyy="0.00989479484108058"
+        iyz="-2.14548867789717E-19"
+        izz="0.00532175463430367" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/200MM_WHEEL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/200MM_WHEEL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_wheel_jw"
+    type="continuous">
+    <origin
+      xyz="0.023896 -0.32204 0.0024265"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_wheel">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="2.41883264606711" />
+      <inertia
+        ixx="0.00532192928370771"
+        ixy="-6.77153382272037E-08"
+        ixz="9.69908118051538E-08"
+        iyy="0.0098947948410806"
+        iyz="-3.76054282148217E-08"
+        izz="0.00532180849774299" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/200MM_WHEEL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/200MM_WHEEL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_wheel_jw"
+    type="continuous">
+    <origin
+      xyz="0.023896 0.32204 0.0024265"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="caster_1">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.018958573506565" />
+      <inertia
+        ixx="1.56337474702378E-05"
+        ixy="2.02764174288022E-06"
+        ixz="2.38568772213739E-06"
+        iyy="8.73695659541672E-06"
+        iyz="1.53250795887146E-06"
+        izz="2.21394966213367E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_1_jw"
+    type="fixed">
+    <origin
+      xyz="0.309 0.250 0.04078"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster_2">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0189585735065647" />
+      <inertia
+        ixx="1.14636909531473E-05"
+        ixy="-1.69114384042082E-06"
+        ixz="-4.62237227716556E-06"
+        iyy="2.03868625080823E-05"
+        iyz="3.52210167696031E-06"
+        izz="1.4659647225761E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_2_jw"
+    type="fixed">
+    <origin
+      xyz="0.309 -0.250 0.04054"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster_3">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0189585735065647" />
+      <inertia
+        ixx="1.54878407796619E-05"
+        ixy="2.2688920672233E-06"
+        ixz="2.14959085818461E-06"
+        iyy="9.03727235048867E-06"
+        iyz="2.32183265568343E-06"
+        izz="2.198508755684E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_3_jw"
+    type="fixed">
+    <origin
+      xyz="-0.422 -0.250 0.04031"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster_4">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://zmr_simulation/meshes/castor_wheel_assembly.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_4_jw"
+    type="fixed">
+    <origin
+      xyz="-0.422 0.250 0.04031"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <link name="imu_link"/>
+  <joint name="imu_joint" type="fixed">
+    <axis xyz="1 0 0"/>      
+    <origin xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+  </joint>
+
+  <!-- Differential Drive plugin-->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+
+      <!-- Plugin update rate in Hz -->
+      <updateRate>20</updateRate>
+
+      <!-- Name of left joint, defaults to `left_joint` -->
+      <leftJoint>left_wheel_jw</leftJoint>
+
+      <!-- Name of right joint, defaults to `right_joint` -->
+      <rightJoint>right_wheel_jw</rightJoint>
+
+      <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+      <wheelSeparation>0.6</wheelSeparation>
+
+      <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+      <wheelDiameter>0.2</wheelDiameter>
+
+      <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
+      <wheelAcceleration>1.0</wheelAcceleration>
+
+      <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+      <wheelTorque>20</wheelTorque>
+
+      <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
+      <commandTopic>cmd_vel</commandTopic>
+
+      <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
+      <odometryTopic>odom</odometryTopic>
+
+      <!-- Odometry frame, defaults to `odom` -->
+      <odometryFrame>odom</odometryFrame>
+
+      <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+      <robotBaseFrame>base_link</robotBaseFrame>
+
+      <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
+      <odometrySource>WORLD</odometrySource>
+
+      <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+      <publishWheelTF>true</publishWheelTF>
+
+      <!-- Set to true to publish transforms for the odometry, defaults to true -->
+      <publishOdom>true</publishOdom>
+
+      <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+      <publishWheelJointState>true</publishWheelJointState>
+
+      <!-- Set to true to swap right and left wheels, defaults to true -->
+      <legacyMode>false</legacyMode>
+    </plugin>
+  </gazebo>
+
+  <!-- GPU lidar Plugin -->
+  <gazebo reference="rplidar">
+    <sensor type="gpu_ray" name="lidar_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="lidar_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>rplidar</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Depth Camera plugin-->
+  <gazebo reference="front_camera">
+    <sensor name="front_cameraa" type="depth">
+      <update_rate>20</update_rate>
+      <camera>
+        <horizontal_fov>1.047198</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.01</near>
+          <far>20</far>
+        </clip>
+      </camera>
+      <plugin name="front_camera_controller" filename="libgazebo_ros_camera.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>1.0</updateRate>
+        <cameraName>front_camera_ir</cameraName>
+        <imageTopicName>/front_camera/color/image_raw</imageTopicName>
+        <cameraInfoTopicName>/front_camera/color/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>/front_camera/depth/image_raw</depthImageTopicName>
+        <depthImageInfoTopicName>/front_camera/depth/camera_info</depthImageInfoTopicName>
+        <pointCloudTopicName>/front_camera/depth/points</pointCloudTopicName>
+        <frameName>front_camera</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+        <distortionK1>0.00000001</distortionK1>
+        <distortionK2>0.00000001</distortionK2>
+        <distortionK3>0.00000001</distortionK3>
+        <distortionT1>0.00000001</distortionT1>
+        <distortionT2>0.00000001</distortionT2>
+        <CxPrime>0</CxPrime>
+        <Cx>0</Cx>
+        <Cy>0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+  
+	  <!-- IMU SENSOR -->
+	<gazebo reference="imu_link">
+	  <gravity>true</gravity>
+	  <sensor name="imu_sensor" type="imu">
+	    <always_on>true</always_on>
+	    <update_rate>100</update_rate>
+	    <visualize>true</visualize>
+	    <topic>imu_data_plugin</topic>
+	    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+	      <topicName>imu</topicName>
+	      <bodyName>imu_link</bodyName>
+	      <updateRateHZ>10.0</updateRateHZ>
+	      <gaussianNoise>0.0</gaussianNoise>
+	      <xyzOffset>0 0 0</xyzOffset>
+	      <rpyOffset>0 0 0</rpyOffset>
+	      <frameName>imu_link</frameName>
+	    </plugin>
+	    <pose>0 0 0 0 0 0</pose>
+	  </sensor>
+	</gazebo>
+</robot>

@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    
+    <!--<model name="box">
+      <pose>1 1 0 1.57 0 -1.57</pose>
+      <link name="body">
+        <collision name="collision1">
+          <geometry>
+            <mesh>
+              <uri>$(find mybot_description)/meshes/EV_Charging_Station.stl</uri>
+              <scale>0.04 0.04 0.04</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual1">
+          <geometry>
+            <mesh>
+              <uri>$(find mybot_description)/meshes/EV_Charging_Station.stl</uri>
+              <scale>0.04 0.04 0.04</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    
+  <joint:fixed name="left_wheel_hinge">
+  <body1>ground_plane</body1>
+  <body2>box</body2>
+  <anchor>ground_plane</anchor>
+  <axis>0 1 0</axis>
+  </joint:fixed>-->
+  
+	  <model name="charging_box_1">
+	  <pose>4 0 0 0 0 0</pose>
+	  <link name="charging_box_link_1">
+	    <collision name="collision">
+	      <geometry>
+		<box>
+		  <size>0.5 0.8 1.5</size>
+		</box>
+	      </geometry>
+	      <surface>
+		<friction>
+		  <ode>
+		    <mu>0.01</mu>
+		    <mu2>0.01</mu2>
+		  </ode>
+		</friction>
+	      </surface>
+	    </collision>
+	    <visual name="visual">
+	      <geometry>
+		<box>
+		  <size>0.5 0.8 1.5</size>
+		</box>
+	      </geometry>
+	    </visual>
+	  </link>
+	  </model>
+	  
+    <include>
+	      <uri>model://aruco_visual_marker_0</uri>
+	      <pose> 3.9 0 0.2 0 -1.57 0</pose>
+	      <scale>5 5 5</scale>
+    </include>
+   
+	   
+	  <joint name="tag_joint_1" type="fixed">
+	    <parent link="charging_box_link_1"/>
+	    <child link="aruco_visual_marker_0"/>
+	    <axis xyz="0 0 1"/>
+	    <origin xyz="0 0 0"/>
+	  </joint>
+ 
+	  
+  </world>
+</sdf>
